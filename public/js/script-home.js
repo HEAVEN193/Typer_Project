@@ -15,7 +15,6 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let params_time = Number(urlParams.get('time'));
 
-console.log("salut");
 let gameTime = 30 * 1000;
 window.timer = null;
 window.gameStart = null;
@@ -60,21 +59,19 @@ function newGame(){
     }
     addClass(document.querySelector('.word'),'current');
     addClass(document.querySelector('.letter'), 'current');
+    document.querySelector('.info').innerHTML = gameTime / 1000;
 }
 
 function getWpm(){
-    //let words = [...document.querySelectorAll('.word')];
-    let AvgCaracByWord = parseInt(letterTyped / wordTyped);
     let lettersCorrect = document.querySelectorAll('.letter.correct').length;
-    let result = Math.round((lettersCorrect / AvgCaracByWord)/ gameTime * 60000); 
+    let result = Math.round((lettersCorrect / 5) * (60000 / gameTime)); 
     return result;
 }
 
 function gameOver(){
     clearInterval(window.timer);
     addClass(document.querySelector('.game'), 'over');
-    let result = getWpm();
-    document.querySelector('.info').innerHTML = `WPM : ${result}`;
+    document.querySelector('.info').innerHTML = `WPM : ${getWpm()}`;
 }
 
 
@@ -101,6 +98,7 @@ btnReplay.addEventListener('click', ()=>{
 window.addEventListener('resize', ()=>{
     moveCursor();
 })
+
 window.addEventListener('keydown', (e) => {
     
     let key = e.key;
@@ -112,17 +110,22 @@ window.addEventListener('keydown', (e) => {
     let isBackSpace = key === 'Backspace';
     let isFirstLetter = currentLetter === currentWord.firstChild;
     
+    CheckCapsLock(e);
+    OnKeyPressed(e);
+
+    if(isBackSpace && !window.timer){
+        return;
+    }
+    if(isSpace && !window.timer){
+        return;
+    }
+    
+
     if(document.querySelector('.game.over')){
         return;
     }
 
-
-    CheckCapsLock(e);
-    OnKeyPressed(e);
-    // console.log({ key, expected });
-
     if(!window.timer && isLetter){
-        console.log("oui oui, ca rentre");
         window.timer = setInterval( () => {
             if(!window.gameStart){
                 window.gameStart = (new Date()).getTime();
@@ -151,14 +154,6 @@ window.addEventListener('keydown', (e) => {
                 addClass(currentLetter.nextSibling, 'current');
             }
         }
-            // else{
-            //     incorrectLetter = document.createElement('span');
-            //     incorrectLetter.innerHTML = key;
-            //     incorrectLetter.className = 'letter incorrect extra';
-            //     incorrectLetter.style.opacity = "0.5";
-            //     currentWord.appendChild(incorrectLetter);
-            // }
-        
     }
     if (isSpace) {
 
@@ -181,54 +176,34 @@ window.addEventListener('keydown', (e) => {
     }
 
     if (isBackSpace) {
-    //let incorrectExtra = document.querySelector('.incorrect.extra.letter');
         
+        // Si il supprimer avant un espace -> revient au mot précédent
+        if(!currentLetter){
 
-    // if(incorrectExtra){
-    //     console.log("oui4");
-    //     currentWord.removeChild(currentWord.lastChild);
+          
+            addClass(currentWord.lastChild, 'current');
+            removeClass(currentWord.lastChild, 'incorrect');
+            removeClass(currentWord.lastChild, 'correct');
         
-    //     removeClass(currentWord.lastChild, 'incorrect');
-    //     removeClass(currentWord.lastChild, 'correct');
-    //     removeClass(currentLetter, 'current');
-    //     removeClass(currentLetter.previousSibling, 'incorrect'); 
-
-    //     removeClass(currentLetter.previousSibling, 'correct');
-    //                 addClass(currentWord.previousSibling.lastChild, 'current');
-
-
-    // }
-        
-
+        }
+        // Si il supprimer avant la première lettre d'un mot -> revient au mot précédent
         if (currentLetter && isFirstLetter) {
-            console.log('oui3');
             removeClass(currentWord, 'current');
             addClass(currentWord.previousSibling, 'current');
             removeClass(currentLetter, 'current');
             addClass(currentWord.previousSibling.lastChild, 'current');
             removeClass(currentWord.previousSibling.lastChild, 'incorrect');
             removeClass(currentWord.previousSibling.lastChild, 'correct');
-
-            
         }
+
+        // S'il supprime un charactere -> revient au charactere d'avant
         if(currentLetter && !isFirstLetter){
-            console.log('oui2');
             removeClass(currentLetter, 'current');
             addClass(currentLetter.previousSibling, 'current');
             removeClass(currentLetter.previousSibling, 'incorrect');
             removeClass(currentLetter.previousSibling, 'correct');
            
         }
-        if(!currentLetter){
-            addClass(currentWord.lastChild, 'current');
-            removeClass(currentWord.lastChild, 'incorrect');
-            removeClass(currentWord.lastChild, 'correct');
-            console.log("!currentLetter")
-        
-        }
-        console.log(currentWord.previousSibling);
-        
-        
     }
 
     /**
@@ -237,7 +212,6 @@ window.addEventListener('keydown', (e) => {
     if(currentWord.getBoundingClientRect().top > document.querySelector('.game').getBoundingClientRect().top + 60){ // Si le top du mot actuel est plus grand la moitié de la page
         let words = document.querySelector('.words'); // Conteneur qui contient tout les mots
         let margin = parseInt(words.style.marginTop || "0px"); // Prend le margin top actuelle de "words", le convertir en int, s'il est null il sera égal à 0px
-        console.log({margin});
         words.style.marginTop = (margin - 36) + "px"; // Change le top en retirant 35px au top ce qui fera défilé le texte
         for(let i = 0; i < 30; i++){ // Retire 20 nouveaux mots au hasard pour avoir des mots à l'infini (voir plus haut pour précision de son fonctionnement)
 
@@ -262,15 +236,16 @@ function moveCursor(){
     cursor.style.position ="fixed";
     cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top +2+"px";
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']+ "px"; // prend la position de la lettre ou du mot suivant et ajoute px (utilisation de condition ternaire pour savoir si l'on doit changer le right ou le left)  
-    
 }
 
 function OnKeyPressed(e)
 {
-    if (e.which == 9)
+    if (e.key == "Tab")
     {
-        newGame();
+        location.reload();
+        e.preventDefault();
     }
+    
 }
 
 function CheckCapsLock(){
@@ -295,7 +270,6 @@ btnOptions.addEventListener("click",function()
     OptionPopUp.style.display = "block";
     main.style.filter = "blur(5px)";
     PageHeader.style.filter = "blur(5px)";
-    console.log("test");
 });
 
 
@@ -327,7 +301,6 @@ btnOptions.addEventListener("click",function()
 
 
 
-// document.querySelector('#divLogo').addEventListener('click', funct)
 
 
 

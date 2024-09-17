@@ -25,7 +25,15 @@
                 </div> 
                 <div id="UserInf">
                     <div id="divPseudo">
-                        LOGIN
+                        <?php
+                        use Matteomcr\TyperProject\Models\Utilisateur;
+
+                        if(Utilisateur::current())
+                            echo Utilisateur::current()->pseudo; 
+                        else
+                            echo "LOGIN";
+                        
+                        ?>
                     </div>
                     <div id="user_pp_container">
                         <i class="fa fa-user" aria-hidden="true"></i>

@@ -23,7 +23,7 @@
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password">
-        <label for="password">Re-enter Password</label>
+        <label for="password">Confirm Password</label>
         <input type="password" placeholder="Password" id="password_confirm" name="passwordConfirm">
 
         <button type="submit" name="submit">Create account</button>
