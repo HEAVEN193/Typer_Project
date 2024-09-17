@@ -21,4 +21,8 @@ class HomeController extends BaseController {
     {
         return $this->view->render($response, 'login-page.php');
     }
+    public function showUserPage(ServerRequestInterface $request, ResponseInterface $response, array $args) : ResponseInterface
+    {
+        return $this->view->render($response, 'user-page.php');
+    }
 }

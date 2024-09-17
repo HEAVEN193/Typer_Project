@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/user-page.css">
-    <link rel="stylesheet" href="./css/style-home.css">
+    <link rel="stylesheet" href="css/user-page.css">
+    <link rel="stylesheet" href="css/style-home.css">
     <script src="https://kit.fontawesome.com/7c6bb8aaf1.js" crossorigin="anonymous"></script>
     <title>User Page</title>
 </head>
@@ -15,7 +15,7 @@
     <header>
         <div>
             <div id="divLogo">
-                <img id="logo" src="Resource/Icon/icon_typerPP.png"></img>
+                <img id="logo" src="resources/icon/icon_typerPP.png"></img>
                 <h1>TYPER++</h1>
             </div>
         </div>
@@ -48,7 +48,7 @@
                             class="fa fa-lock"></i></span><span>Sécurité</span></button>
                 <button class="btnUserPage" id="btnParamsTyper"><span><i class="fa fa-gear"></i></span><span>Paramètre
                         typer</span></button>
-                <a href="index.html"><button class="btnUserPage" id="btnRetourAccueil"><span><i
+                <a href="/"><button class="btnUserPage" id="btnRetourAccueil"><span><i
                                 class="fa fa-keyboard"></i></span><span>Retour à l'accueil</span></button></a>
             </div>
         </div>

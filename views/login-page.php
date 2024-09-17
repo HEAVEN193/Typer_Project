@@ -16,16 +16,25 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="Php/traitement_login.php" method="post">
-        <h3>Sign up</h3>
+    <form action="/login-attempt" method="post">
+        <h3>login</h3>
 
-        <label for="username">Username / Email</label>
+        <label for="username">Email</label>
         <input type="text" placeholder="Email" id="username" name="username">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password">
 
         <button type="submit" name="submit">Log In</button>
+        <p class="error" >
+        <?php
+            if(isset($_SESSION['error'])){
+                echo $_SESSION['error'];
+                unset($_SESSION['error']); 
+            } 
+        ?>
+</p>
+
     </form>
 </body>
 </html>

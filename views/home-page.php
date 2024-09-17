@@ -56,13 +56,13 @@
 
     <div id="OptionsPopUp">
         <div id="OptBtnsSpace">
-            <a href="user_page.html"><button class="btn" id="btnUserSettings">Parametres d'utilisateur</button></a>
-            <a href="signIn.html"><button class="btn" id="btnLogin">Se Connecter</button></a>
-            <a href="signUp.html"><button class="btn" id="btnCreateAccount">Creer un compte</button></a>
+            <a href="/user"><button class="btn" id="btnUserSettings">Parametres d'utilisateur</button></a>
+            <a href="/login"><button class="btn" id="btnLogin">Se Connecter</button></a>
+            <a href="/register"><button class="btn" id="btnCreateAccount">Creer un compte</button><a href="/register">
             <button class="btn" id="btnThemes">Themes</button>
             <a href="params_typing.html"><button class="btn" id="btnTypeSettings">Parametres de typing</button></a>
             <button class="btn" id="btnForLater">à faire</button>
-            <button class="btn" id="btnBack">Retour</button>
+            <a href="/"><button class="btn" id="btnBack">Retour</button></a>
         </div>
     </div>
 </body>
