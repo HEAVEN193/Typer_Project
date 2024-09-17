@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 
 class AuthController {
-    public function showForm(Request $request, Response $response): Response
+    public function showHomePage(Request $request, Response $response): Response
     {
         return $this->view->render($response, 'home-page.php');
     }
