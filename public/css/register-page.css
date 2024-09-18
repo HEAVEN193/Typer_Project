@@ -70,7 +70,7 @@ input{
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
 }
 ::placeholder{
     color: #ff4747;
@@ -91,4 +91,14 @@ button:hover{
     transition: 0.4s;
     background-color: #a2a2a2;
     box-shadow: rgba(0, 0, 0, 0.30) 0px 6px 16px;
+}
+
+.btnBack
+{
+    font-family: 'Poppins',sans-serif;
+    color: #ff4747;
+    letter-spacing: 0.5px;
+    border: none;
+    text-decoration: none;
+    margin-top: 40px;
 }

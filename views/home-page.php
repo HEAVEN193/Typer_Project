@@ -20,7 +20,11 @@
         <div>
             <div id="optionsUserInf">
                 <div id="divOptions">
-                    <div><p id="CapsLock">Caps Lock</p></div>
+                
+                    <div id="CapsLock" style="display:none;">
+                        <i id="logoCadena"class="fa fa-lock-open" style="margin: 2px 7px;"></i>
+                        <p>Caps Lock</p>
+                    </div>
                     <button id="btnOptions" class="btn">OPTIONS</button>
                 </div> 
                 <div id="UserInf">
@@ -37,9 +41,6 @@
                     </div>
                     <div id="user_pp_container">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <!-- <div id="divUserPP">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </div> -->
                     </div>
                     
                 </div>

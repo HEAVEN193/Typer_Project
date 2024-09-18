@@ -23,8 +23,8 @@ body{
     height: 100vh;
     width: 100vw;
     font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -62,6 +62,7 @@ h1{
 header{
     font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
     width: 80%;
+    min-width: 900px;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -99,7 +100,6 @@ header>div{
 } */
 
 
-
 #logo{
     height: 100%;
     width: 50%;
@@ -116,6 +116,12 @@ header>div{
     justify-content: space-between;
     align-items: center;
     padding: 1px;
+
+}
+
+#CapsLock{
+    display: flex;
+    justify-content: space-between;
 }
 
 #user_pp_container{
@@ -127,6 +133,7 @@ header>div{
     border-radius: 14px;
     background-color: var(--middleBright);
     transition: 0.1s;
+
 }
 #user_pp_container:hover{
     transform: scale(1.1);
@@ -141,31 +148,30 @@ header>div{
     height: 100%;
     width: 40%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+
 }
 
 #divPseudo{
-    height: 50%;
+    margin: 10px;
+    /* height: 50%;
     width: 50%;
-    /* border: 1px solid purple; */
     display:flex ;
     justify-content: space-around;
     align-items: center;   
     height: 100%;
     width: 100%;
-    /* border: 1px solid purple; */
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center; */
 }
 
 #divOptions{
     height: 50%;
     width: 50%;
-    /* border: 1px solid purple; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -207,9 +213,7 @@ main{
     height: calc(100% - 150px);
     width: 100%;
     flex-direction: column;
-    padding-bottom: 20px;
-
-    /* border: 1px solid white; */
+    padding-bottom: 120px;
 }
 
 .game{

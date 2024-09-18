@@ -6,7 +6,7 @@ const Mode = {
 
 let words = 'le main ils penser aider grand pourquoi penser aucun air tout bas donner déménagement ce temps lieu maison image plus bas vieux son moi cause faire ensemble lieu tout de trop petit personnes je temps nous changement côté est allé encore dire genre manière garçon avant ils aucun dire essayer ajouter dehors année vivre utiliser ne là vers aucun fin jouer là ainsi mer moment prendre ciel pays pas voir rendre heure le maison attendre toujours si bon ami chose tant jusque soir homme te donc sur chambre coup rendre mot tête air arriver regard toujours puis faire demander sortir enfant rester voir premier peu en au amour ville genre votre moi âme autre même oui chercher comprendre forme comme bon encore travail'.split(' ');
 let wordsCount = words.length;
-var text = document.getElementById("CapsLock");
+var capsLockDOM = document.getElementById("CapsLock");
 let OptionPopUp = document.querySelector("#OptionsPopUp");
 let btnOptions = document.querySelector("#btnOptions");
 let btnReplay = document.querySelector('.btnReplay');
@@ -15,7 +15,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let params_time = Number(urlParams.get('time'));
 
-let gameTime = 30 * 1000;
+let gameTime = 15 * 1000;
 window.timer = null;
 window.gameStart = null;
 let currentMode;
@@ -255,12 +255,19 @@ function CheckCapsLock(){
 
 // When the user presses any key on the keyboard, run the function
 window.addEventListener("keyup", function(event) {
-
+ var logoCadena = document.querySelector('#logoCadena');
   // If "caps lock" is pressed, display the warning text
   if (event.getModifierState("CapsLock")) {
-    text.style.color= "green";
+    capsLockDOM.style.display = "flex";
+    capsLockDOM.style.position = "relative";
+    capsLockDOM.style.left = "-20px";
+    capsLockDOM.style.color= "#ff4545";
+    logoCadena.classList = "fa fa-lock"
   } else {
-    text.style.color = "red"
+    // capsLockDOM.style.color = "yellow"
+    // logoCadena.classList = "fa fa-lock-open"
+    capsLockDOM.style.display = "none";
+
   }
 });
 
