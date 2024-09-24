@@ -12,8 +12,6 @@ btnInfoCompte.addEventListener("click",function(){
     StatsCompteSpace.style.display = "none";
     SecuriteCompteSpace.style.display = "none";
     ParametreCompteSpace.style.display = "none";
-
-    console.log("test");
 });
 
 btnStatsCompte.addEventListener("click", function(){
@@ -37,5 +35,19 @@ btnParametreTyper.addEventListener("click", function(){
     StatsCompteSpace.style.display = "none";
     SecuriteCompteSpace.style.display = "none";
     ParametreCompteSpace.style.display = "flex";
+
+    
+    
 });
 
+
+document.getElementById('temps').value = storedDuration || '15';
+const carSelect = document.getElementById('temps');
+console.log(carSelect);
+
+carSelect.addEventListener('change', function() {
+    let selectedDuration = this.value;
+    gameTime = parseInt(selectedDuration) * 1000;
+    localStorage.setItem('gameTime', selectedDuration);
+    newGame();
+});

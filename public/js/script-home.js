@@ -15,22 +15,25 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let params_time = Number(urlParams.get('time'));
 
-let gameTime = 15 * 1000;
+let storedDuration = localStorage.getItem('gameTime');
+let gameTime = storedDuration ? parseInt(storedDuration) * 1000 : 15000;
+// document.getElementById('car-select').value = storedDuration || '15';
+
 window.timer = null;
 window.gameStart = null;
 let currentMode;
 let wordTyped = 0;
 let letterTyped = 0;
 
-const carSelect = document.getElementById('car-select');
-console.log(carSelect);
-carSelect.addEventListener('change', function() {
-    // Changer la valeur de la variable en fonction du choix de l'utilisateur
-    gameTime = carSelect.value * 1000;
+// const carSelect = document.getElementById('car-select');
+// console.log(carSelect);
 
-    console.log('La variable "selectedCar" a été changée en :', carSelect); // Pour voir dans la console
-    newGame();
-  });
+// carSelect.addEventListener('change', function() {
+//     let selectedDuration = this.value;
+//     gameTime = parseInt(selectedDuration) * 1000;
+//     localStorage.setItem('gameTime', selectedDuration);
+//     newGame();
+//   });
 
 SetCurrentMode();
 

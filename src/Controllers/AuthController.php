@@ -20,7 +20,7 @@ class AuthController extends BaseController{
             return $this->view->render($response, 'register-page.php');
         }
 
-        if($password != $passwordConfirm){
+        if($password !== $passwordConfirm){
             $_SESSION['error'] =  "Les mots de passes ne correspondent pas !";
             return $this->view->render($response, 'register-page.php', [
                 'pseudo' => $pseudo,

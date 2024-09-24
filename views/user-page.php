@@ -27,8 +27,16 @@
                 </div>
                 <div id="UserInf">
                     <div id="divPseudo">
-                        PSEUDO
-                    </div>
+                            <?php
+                            use Matteomcr\TyperProject\Models\Utilisateur;
+
+                            if(Utilisateur::current())
+                                echo Utilisateur::current()->pseudo; 
+                            else
+                                echo "LOGIN";
+                            
+                            ?>
+                        </div>
                     <div id="user_pp_container">
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
@@ -139,17 +147,15 @@
                                 <th colspan="2">Paramètre du typer</th>
                             </tr>
                         </thead>
-                        <form action="traitement_user_parameter.php" method="post">
+                        <form id="carForm" action="/">
                             <tr>
-                                <label for="temps"></label><td class="col-left">Temps du test : </td></label>
+                                <label for="car-select"></label><td class="col-left">Temps du test : </td></label>
                                 <td class="col-right">
                                     <select id="temps" name="temps">
-                                        <option value="120" class="options">2 minute</option>
-                                        <option value="105" class="options">1:45 minute</option>
-                                        <option value="90" class="options">1:30 minute</option>
-                                        <option value="60" class="options" selected>60 secondes</option>
-                                        <option value="30" class="options">30 secondes</option>
-                                        <option value="15" class="options">15 secondes</option>
+                                        <option value="15">15 secondes</option>
+                                        <option value="30">30 secondes</option>
+                                        <option value="45">45 secondes</option>
+                                        <option value="60">60 secondes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -174,7 +180,8 @@
         </div>
     </div>
 </body>
-<script src="./js/script-home.js"></script>
-<script src="./js/user-page.js"></script>
+<script src="js/script-home.js"></script>
+<script src="js/user-page.js"></script>
 
 </html>
+
