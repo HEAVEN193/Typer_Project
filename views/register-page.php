@@ -19,10 +19,10 @@
         <h3>Crée un compte</h3>
 
         <label for="username">Nom d'utilisateur</label>
-        <input type="text" placeholder="Nom d'utilisateur" id="username" name="username">
+        <input type="text" placeholder="Nom d'utilisateur" id="username" name="username" value="<?php if(isset($pseudo)) echo $pseudo; else echo ''; ?>">
 
         <label for="username">Email</label>
-        <input type="text" placeholder="Email" id="email" name="email">
+        <input type="text" placeholder="Email" id="email" name="email" value="<?php if(isset($email)) echo $email; else echo ''; ?>">
 
         <label for="password">Mot de passe</label>
         <input type="password" placeholder="Mot de passe" id="password" name="password">

@@ -21,7 +21,7 @@
             <div id="optionsUserInf">
                 <div id="divOptions">
                 
-                    <div id="CapsLock" style="display:none;">
+                    <div id="CapsLock">
                         <i id="logoCadena"class="fa fa-lock-open" style="margin: 2px 7px;"></i>
                         <p>Caps Lock</p>
                     </div>
@@ -62,6 +62,15 @@
             <div class="cursor"></div>
         </div>
     </main>
+    <form id="carForm" method="POST">
+    <label for="car-select">Choisissez une voiture :</label>
+        <select id="car-select" name="car">
+            <option value="15">15 secondes</option>
+            <option value="30">30 secondes</option>
+            <option value="45">45 secondes</option>
+            <option value="60">60 secondes</option>
+        </select>
+    </form>
 
     <div id="OptionsPopUp">
         <div id="OptBtnsSpace">

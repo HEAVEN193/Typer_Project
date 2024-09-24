@@ -22,6 +22,15 @@ let currentMode;
 let wordTyped = 0;
 let letterTyped = 0;
 
+const carSelect = document.getElementById('car-select');
+console.log(carSelect);
+carSelect.addEventListener('change', function() {
+    // Changer la valeur de la variable en fonction du choix de l'utilisateur
+    gameTime = carSelect.value * 1000;
+
+    console.log('La variable "selectedCar" a été changée en :', carSelect); // Pour voir dans la console
+    newGame();
+  });
 
 SetCurrentMode();
 
@@ -260,13 +269,13 @@ window.addEventListener("keyup", function(event) {
   if (event.getModifierState("CapsLock")) {
     capsLockDOM.style.display = "flex";
     capsLockDOM.style.position = "relative";
-    capsLockDOM.style.left = "-20px";
+    capsLockDOM.style.left = "-10px";
     capsLockDOM.style.color= "#ff4545";
     logoCadena.classList = "fa fa-lock"
   } else {
-    // capsLockDOM.style.color = "yellow"
-    // logoCadena.classList = "fa fa-lock-open"
-    capsLockDOM.style.display = "none";
+    capsLockDOM.style.color = "green"
+    logoCadena.classList = "fa fa-lock-open"
+    // capsLockDOM.style.display = "none";
 
   }
 });

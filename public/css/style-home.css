@@ -122,6 +122,8 @@ header>div{
 #CapsLock{
     display: flex;
     justify-content: space-between;
+    position: relative;
+    left: -10px;
 }
 
 #user_pp_container{
