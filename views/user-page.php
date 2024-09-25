@@ -73,15 +73,45 @@
                         </thead>
                         <tr>
                             <td class="col-left">Pseudo : </td>
-                            <td class="col-right">Matteo</td>
+                            <td class="col-right">
+                            <?php
+                                // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                if(Utilisateur::current())
+                                    echo Utilisateur::current()->pseudo; 
+                                else
+                                    echo "non connecté";
+                            
+                            ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col-left">Email : </td>
-                            <td class="col-right">matteo.mcr@eduge.ch</td>
+                            <td class="col-right">
+                            <?php
+                                // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                if(Utilisateur::current())
+                                    echo Utilisateur::current()->addressMail; 
+                                else
+                                    echo "non connecté";
+                            
+                            ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col-left">Date d'inscripion :</td>
-                            <td class="col-right">13/10/2022</td>
+                            <td class="col-right">
+                            <?php
+                                // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                if(Utilisateur::current())
+                                    echo Utilisateur::current()->getStatistique()->registrationDate; 
+                                else
+                                    echo "non connecté";
+                            
+                            ?>
+                            </td>
                         </tr>
 
                     </table>

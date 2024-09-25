@@ -72,7 +72,9 @@ input{
     font-weight: 400;
 }
 ::placeholder{
-    color: #ff4747;
+    color: grey;
+    font-weight: 200;
+
 }
 button{
     margin-top: 50px;

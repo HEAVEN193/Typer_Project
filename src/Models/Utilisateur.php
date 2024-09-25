@@ -5,6 +5,8 @@ namespace Matteomcr\TyperProject\Models;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Matteomcr\TyperProject\Models\Database;
+use Matteomcr\TyperProject\Models\Statistique;
+
 
 class Utilisateur{
     public $utilisateurID;
@@ -48,34 +50,21 @@ class Utilisateur{
         return $current;
     }
 
-    public function getRole(): Role|null
+    public function getStatistique(): Statistique|null
     {
-        if(!$this->role){
-            $this->role = $this->idRole ? Role::fetchById($this->idRole) : null;
+        return Statistique::fetchByUserId($this->utilisateurID);
+    }
+
+    public static function emailAlreadyExist($email) :bool{
+        $statement = Database::connection()->prepare("SELECT * FROM Utilisateurs WHERE addressMail = :email");;
+        $statement->execute([':email' => $email]);
+        $user = $statement->fetch(\PDO::FETCH_ASSOC);
+        if($user){
+            return true;
         }
-        return $this->role;
+        return false;
     }
-    // public static function getAllUser() : array{
-    //     $pdo = Database::connection();
-    //     $sql = "SELECT * FROM UTILISATEUR";
-    //     $stmt = $pdo->prepare($sql);
-    //     $stmt->execute();
 
-    //     $user = $stmt->fetchAll();
-
-    //     return $user;
-    // }
-
-    public static function getUserByEmail($email){
-        $pdo = Database::connection();
-        $sql = "SELECT * FROM UTILISATEUR WHERE email = :email";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['email' => $email]);
-
-        $user = $stmt->fetch();
-
-        return $user;
-    }
 
     
 
@@ -104,6 +93,8 @@ class Utilisateur{
 
             // Exécuter la requête
             $stmt->execute();
+
+            return $pdo->lastInsertId();
         }catch(\Exception $e){
             throw new \Exception("Email vide !");
         }

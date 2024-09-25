@@ -92,6 +92,7 @@ btnReplay.addEventListener('click', ()=>{
     // gameOver();
     // newGame();
     location.reload();
+    // newGame();
     // removeClass(document.querySelector('.game'), 'over');
     // removeClass(document.querySelector('.game'), 'over');
     // document.querySelector('.info').innerHTML = gameTime / 1000;
