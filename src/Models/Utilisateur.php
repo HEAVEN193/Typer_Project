@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Matteomcr\TyperProject\Models\Database;
 use Matteomcr\TyperProject\Models\Statistique;
+use Matteomcr\TyperProject\Models\Test;
 
 
 class Utilisateur{
@@ -53,6 +54,26 @@ class Utilisateur{
     public function getStatistique(): Statistique|null
     {
         return Statistique::fetchByUserId($this->utilisateurID);
+    }
+
+    public function getIdStatistique(): int|null
+    {
+        return Statistique::fetchByUserId($this->utilisateurID)->statID;
+    }
+
+    public function getNumberOfTypingTest(): int|null
+    {
+        return Test::NumberOfTypingTestByStatId($this->getIdStatistique());
+    }
+
+    public function getHighestScore(): int|null
+    {
+        return Test::getHighestWpmByStatId($this->getIdStatistique());
+    }
+
+    public function getLastScore(): int|null
+    {
+        return Test::getLastScoreByStatId($this->getIdStatistique());
     }
 
     public static function emailAlreadyExist($email) :bool{

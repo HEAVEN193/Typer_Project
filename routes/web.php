@@ -2,6 +2,7 @@
 
 use Matteomcr\TyperProject\Controllers\HomeController;
 use Matteomcr\TyperProject\Controllers\AuthController;
+use Matteomcr\TyperProject\Controllers\TestController;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -15,6 +16,9 @@ $app->get('/user', [HomeController::class, 'showUserPage']);
 
 $app->post('/create-account', [AuthController::class, 'createAccount']);
 $app->post('/login-attempt', [AuthController::class, 'login']);
+
+$app->post('/test/create', [TestController::class, 'create']);
+
 
 
 

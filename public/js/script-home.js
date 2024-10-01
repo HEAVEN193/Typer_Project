@@ -37,22 +37,9 @@ timeSelect.addEventListener('change', function() {
     let selectedDuration = this.value;
     gameTime = parseInt(selectedDuration) * 1000;
     localStorage.setItem('gameTime', selectedDuration);
-    // newGame();
-    console.log("en modelacoste");
     location.reload();
-
 });
 
-
-// const carSelect = document.getElementById('car-select');
-// console.log(carSelect);
-
-// carSelect.addEventListener('change', function() {
-//     let selectedDuration = this.value;
-//     gameTime = parseInt(selectedDuration) * 1000;
-//     localStorage.setItem('gameTime', selectedDuration);
-//     newGame();
-//   });
 
 SetCurrentMode();
 
@@ -103,6 +90,45 @@ function gameOver(){
     clearInterval(window.timer);
     addClass(document.querySelector('.game'), 'over');
     document.querySelector('.info').innerHTML = `WPM : ${getWpm()}`;
+
+    const data = {
+        language: "Francais",  // Date actuelle au format AAAA-MM-JJ
+        duration: gameTime / 1000,  // Remplacer par un mot de passe réel ou généré
+        wpm: getWpm() , // ID de l'utilisateur connecté (à modifier dynamiquement selon ta logique)
+        statID: 2
+    };
+
+    // Envoyer les données avec une requête POST
+    fetch('/test/create', {  // URL de ton API PHP
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)  // Convertir les données en JSON
+    })
+    .then(response => response.json())  // Utilise .text() pour voir la réponse brute
+    .then(data => {
+        // console.log('Réponse brute du serveur:', data);
+        // try {
+        //     const data = JSON.parse(data);  
+        //     if (data.message) {
+        //         console.log('Données insérées avec succès:', data.message);
+        //     } else if (data.error) {
+        //         console.error('Erreur lors de l\'insertion des données:', data.error);
+        //     }
+        // } catch (error) {
+        //     console.error('Erreur lors du parsing JSON:', error);
+        // }
+        if (data.message) {
+            console.log('Données insérées avec succès:', data.message);
+        } else if (data.error) {
+            console.error('Erreur lors de l\'insertion des données:', data.error);
+        }
+    })
+    .catch((error) => {
+        console.error('Erreur lors de l\'envoi des données:', error);
+    });
+
 }
 
 
@@ -310,10 +336,6 @@ btnOptions.addEventListener("click",function()
     main.style.filter = "blur(5px)";
     PageHeader.style.filter = "blur(5px)";
 });
-
-
-
-
 
 
 

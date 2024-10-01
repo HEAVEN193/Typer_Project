@@ -15,7 +15,8 @@
     <header>
         <div>
             <div id="divLogo">
-                <img id="logo" src="resources/icon/icon_typerPP.png"></img>
+                <a href="/"><img id="logo" src="resources/icon/icon_typerPP.png"></img></a>
+
                 <h1>TYPER++</h1>
             </div>
         </div>
@@ -129,15 +130,45 @@
                         </thead>
                         <tr>
                             <td class="col-left">Record WPM : </td>
-                            <td class="col-right">115 WPM</td>
+                            <td class="col-right">
+                            <?php
+                                    // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                    if(Utilisateur::current())
+                                        echo Utilisateur::current()->getHighestScore() . " WPM"; 
+                                    else
+                                        echo "non connecté";
+                                
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col-left">Dernier score : </td>
-                            <td class="col-right">98 WPM</td>
+                            <td class="col-right">
+                                <?php
+                                    // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                    if(Utilisateur::current())
+                                        echo Utilisateur::current()->getLastScore() . " WPM"; 
+                                    else
+                                        echo "non connecté";
+                                
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col-left">Partie joué :</td>
-                            <td class="col-right">12</td>
+                            <td class="col-right">
+                                <?php
+                                    // use Matteomcr\TyperProject\Models\Utilisateur;
+
+                                    if(Utilisateur::current())
+                                        echo Utilisateur::current()->getNumberOfTypingTest(); 
+                                    else
+                                        echo "non connecté";
+                                
+                                ?>
+                            </td>
                         </tr>
                     </table>
                 </div>

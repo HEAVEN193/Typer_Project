@@ -13,7 +13,7 @@
     <header id="PageHeader">
         <div>
             <div id="divLogo">
-                <img id="logo" src="resources/icon/icon_typerPP.png"></img>
+                <a href="/"><img id="logo" src="resources/icon/icon_typerPP.png"></img></a>
                 <h1>TYPER<span class="red">++</span></h1>
             </div>
         </div>
