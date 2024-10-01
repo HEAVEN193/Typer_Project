@@ -15,15 +15,34 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let params_time = Number(urlParams.get('time'));
 
+// Chercher dans le localSotrage si un temsp existe
 let storedDuration = localStorage.getItem('gameTime');
+
+// prend le temps sur localStorage sinon prend 15 sec par défaut
 let gameTime = storedDuration ? parseInt(storedDuration) * 1000 : 15000;
-// document.getElementById('car-select').value = storedDuration || '15';
+
+// Initialise le select sur le temps du localstorage ou 15 par défaut
+document.getElementById('time').value = storedDuration || '15';
+const timeSelect = document.getElementById('time');
+
 
 window.timer = null;
 window.gameStart = null;
 let currentMode;
 let wordTyped = 0;
 let letterTyped = 0;
+
+
+timeSelect.addEventListener('change', function() {
+    let selectedDuration = this.value;
+    gameTime = parseInt(selectedDuration) * 1000;
+    localStorage.setItem('gameTime', selectedDuration);
+    // newGame();
+    console.log("en modelacoste");
+    location.reload();
+
+});
+
 
 // const carSelect = document.getElementById('car-select');
 // console.log(carSelect);
@@ -291,33 +310,6 @@ btnOptions.addEventListener("click",function()
     main.style.filter = "blur(5px)";
     PageHeader.style.filter = "blur(5px)";
 });
-
-
-// btnBack.addEventListener("click",function()
-// {
-//     OptionPopUp.style.display = "none";
-//     main.style.filter = "none";
-//     PageHeader.style.filter = "none";
-// });
-
-// btnInfoCompte.addEventListener("click",function(){
-//     InfoCompteSpace.style.display = "flex";
-//     StatsCompteSpace.style.display = "none";
-//     SecuriteCompte.style.display = "none";
-//     console.log("test");
-// });
-
-// btnStatsCompte.addEventListener("click", function(){
-//     InfoCompteSpace.style.display = "none";
-//     StatsCompteSpace.style.display = "flex";
-//     SecuriteCompte.style.display = "none";
-// });
-
-// btnSecuriteCompte.addEventListener("click", function(){
-//     InfoCompteSpace.style.display = "none";
-//     StatsCompteSpace.style.display = "none";
-//     SecuriteCompte.style.display = "flex";
-// });
 
 
 

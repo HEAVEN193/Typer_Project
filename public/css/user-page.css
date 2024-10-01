@@ -145,13 +145,13 @@ a{
     font-family: 'Roboto Mono';
     font-size: 15px;
 }
-select>option{
+/* select>option{
     background-color: rgb(56, 56, 56);
     font-family: 'Roboto Mono' !important;
     font-size: 17px;
     height: 50px;
     padding: 10px;
     outline: none;
-}
+} */
 
 

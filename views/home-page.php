@@ -14,19 +14,19 @@
         <div>
             <div id="divLogo">
                 <img id="logo" src="resources/icon/icon_typerPP.png"></img>
-                <h1>TYPER++</h1>
+                <h1>TYPER<span class="red">++</span></h1>
             </div>
         </div>
         <div>
             <div id="optionsUserInf">
-                <div id="divOptions">
+                <!-- <div id="divOptions"> -->
                 
                     <div id="CapsLock">
                         <i id="logoCadena"class="fa fa-lock-open" style="margin: 2px 7px;"></i>
                         <p>Caps Lock</p>
                     </div>
                     <button id="btnOptions" class="btn">OPTIONS</button>
-                </div> 
+                <!-- </div>  -->
                 <div id="UserInf">
                     <div id="divPseudo">
                         <?php
@@ -62,6 +62,19 @@
             <div class="cursor"></div>
         </div>
     </main>
+
+    <footer>
+        <div class="timer-choice-container">
+                
+            </label for="time">Temps du test :  </label>
+                <select id="time" name="time">
+                    <option value="15">15 secondes</option>
+                    <option value="30">30 secondes</option>
+                    <option value="45">45 secondes</option>
+                    <option value="60">60 secondes</option>
+                </select>
+        </div>
+    </footer>
     <!-- <form id="carForm" method="POST">
     <label for="car-select">durée de test :</label>
         <select id="car-select" name="car">

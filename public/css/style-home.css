@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+/* COLORS */
+
+
 
 :root{
     --bg_color: #333;
@@ -12,11 +15,20 @@
     --middleBright: #505050;
 }
 
+.red{
+    color:var(--secondary_color);
+}
+
 html *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
+html{
+    font-size: 14px;
+}
+
 body{
     background-color: var(--bg_color);
     color: var(--text_color);
@@ -34,7 +46,9 @@ body{
 }
 
 h1{
-    color: var(--text_color)
+    color: var(--text_color);
+    font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
+    font-size: 2.8rem;
 }
 
 
@@ -61,30 +75,30 @@ h1{
 /* Header */
 header{
     font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
-    width: 80%;
+    width: 70%;
     min-width: 900px;
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 header>div{
     width: 50%;
     height: 100%;
-    /* border: 1px solid yellow; */
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 #divLogo{
-    /* border: 1px solid red; */
     height: 90%;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     
     /*pour tout les navigateurs*/
@@ -95,37 +109,36 @@ header>div{
     -ms-user-select: none;
     user-select: none;
 }
-/* .extra.delete{
-    display: none;
-} */
 
-
+/* LOGO TYPER ++ */
 #logo{
     height: 100%;
     width: 50%;
     min-width: 80px;
     max-width: 100px;
-    /* border: 1px solid white; */
 }
 
+
+/* Container header droit */
 #optionsUserInf{
-    /* border: 1px solid red; */
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1px;
-
 }
+
 
 #CapsLock{
     display: flex;
     justify-content: space-between;
     position: relative;
     left: -10px;
+    font-size: 1.2rem;
 }
 
+/* LOGO USER PROFILE */
 #user_pp_container{
     display: flex;
     justify-content: center;
@@ -135,28 +148,32 @@ header>div{
     border-radius: 14px;
     background-color: var(--middleBright);
     transition: 0.1s;
-
 }
 #user_pp_container:hover{
     transform: scale(1.1);
 }
+
 #user_pp_container>i{
     width: 15px;
     height: 15px;
     color: var(--secondary_color);
 }
+
+/* CONTAINER LOGO LOGIN ET USERNAME */
 #UserInf{
     /* border: 1px solid blue; */
     height: 100%;
-    width: 40%;
+    /* width: 30%; */
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
+/* PSEUDO */
 #divPseudo{
     margin: 10px;
+    font-size: 1.1rem;
     /* height: 50%;
     width: 50%;
     display:flex ;
@@ -169,20 +186,22 @@ header>div{
     align-items: center; */
 }
 
-#divOptions{
+
+
+/* #divOptions{
     height: 50%;
     width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+    border: 1px solid green;
+} */
 
-/* Options */
+/* OPTIONS MENU */
 
 #OptionsPopUp{
     height: 500px;
     width: 300px;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -206,7 +225,7 @@ header>div{
 }
 
 
-/* Main*/
+/*----------------- MAIN --------------*/
 
 main{
     display: flex;
@@ -276,10 +295,6 @@ main{
     color: var(--text_color);
 }
 
-/* .letter.current{
-    border-left: 2px solid red;
-}     */
-
 .letter.incorrect{
     color: var(--secondary_color);
 
@@ -304,6 +319,45 @@ main{
 }
 .game.over:focus .cursor{
     display: none;
+}
+
+/* SELECTEUR TEMPS */
+
+footer{
+    display: flex;
+    width: 70%;
+    min-width: 900px;
+    justify-content: end;
+    padding-bottom: 20px;
+}
+
+.timer-choice-container{
+
+    display: flex;
+    align-items: center;
+}
+.timer-choice-container>label{
+    margin-top: 5px ;
+    color: green;
+}
+#time{
+    width: 200px;
+    border: none;
+    background-color: rgb(56, 56, 56);
+    color: white;
+    height: 33px;
+    outline: none;
+    font-family: 'Roboto Mono';
+    font-size: 15px;
+    margin-left: 10px;
+}
+select>option{
+    background-color: rgb(56, 56, 56);
+    font-family: 'Roboto Mono' !important;
+    font-size: 17px;
+    height: 50px;
+    padding: 10px;
+    outline: none;
 }
 
 
