@@ -84,43 +84,24 @@
                         <tr>
                             <td class="col-left">Pseudo : </td>
                             <td class="col-right">
-                            <?php
-                                // use Matteomcr\TyperProject\Models\Utilisateur;
-
-                                if(Utilisateur::current())
-                                    echo Utilisateur::current()->pseudo; 
-                                else
-                                    echo "non connecté";
-                            
-                            ?>
+                                <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->pseudo; ?>">
+                                <i class="pen-to-square"></i>
+                           
                             </td>
                         </tr>
                         <tr>
                             <td class="col-left">Email : </td>
                             <td class="col-right">
-                            <?php
-                                // use Matteomcr\TyperProject\Models\Utilisateur;
-
-                                if(Utilisateur::current())
-                                    echo Utilisateur::current()->addressMail; 
-                                else
-                                    echo "non connecté";
-                            
-                            ?>
+                            <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
+                                <i class="pen-to-square"></i>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-left">Date d'inscripion :</td>
                             <td class="col-right">
-                            <?php
-                                // use Matteomcr\TyperProject\Models\Utilisateur;
-
-                                if(Utilisateur::current())
-                                    echo Utilisateur::current()->getStatistique()->registrationDate; 
-                                else
-                                    echo "non connecté";
-                            
-                            ?>
+                                <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
+                                <i class="pen-to-square"></i>
+                            </td>
                             </td>
                         </tr>
 
