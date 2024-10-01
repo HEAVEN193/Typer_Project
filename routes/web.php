@@ -14,8 +14,10 @@ $app->get('/register', [HomeController::class, 'showRegisterPage']);
 $app->get('/login', [HomeController::class, 'showLoginPage']);
 $app->get('/user', [HomeController::class, 'showUserPage']);
 
+
 $app->post('/create-account', [AuthController::class, 'createAccount']);
 $app->post('/login-attempt', [AuthController::class, 'login']);
+$app->get('/logout', [AuthController::class, 'logout']);
 
 $app->post('/test/create', [TestController::class, 'create']);
 

@@ -49,16 +49,25 @@
     <div id="mainUser">
         <div id="navbarSpace">
             <div id="navbar">
-                <button class="btnUserPage" id="btnInfoCompte"><span><i class="fa fa-info-circle"
-                            aria-hidden="true"></i></span><span>Informations du compte</span></button>
-                <button class="btnUserPage" id="btnStatsCompte"><span><i class="fa fa-gamepad"></i></span><span>Stats du
-                        compte</span></button>
+                <button class="btnUserPage" id="btnInfoCompte">
+                    <span>
+                        <i class="fa fa-info-circle"aria-hidden="true"></i>
+                    </span>
+                    <span>Informations</span>
+                </button>
+                <button class="btnUserPage" id="btnStatsCompte"><span><i class="fa fa-gamepad"></i></span><span>Statistiques</span></button>
                 <button class="btnUserPage" id="btnSecuriteCompte"><span><i
                             class="fa fa-lock"></i></span><span>Sécurité</span></button>
-                <button class="btnUserPage" id="btnParamsTyper"><span><i class="fa fa-gear"></i></span><span>Paramètre
-                        typer</span></button>
-                <a href="/"><button class="btnUserPage" id="btnRetourAccueil"><span><i
-                                class="fa fa-keyboard"></i></span><span>Retour à l'accueil</span></button></a>
+                <button class="btnUserPage" id="btnParamsTyper"><span><i class="fa fa-gear"></i></span><span>Paramètres</span></button>
+                <a href="/">
+                    <button class="btnUserPage" id="btnRetourAccueil">
+                        <span>
+                            <i class="fa fa-keyboard"></i>
+                        </span>
+                        <span>Retour menu
+                        </span>
+                    </button>
+                </a>
             </div>
         </div>
         <div id="navSelectSpace">
@@ -69,7 +78,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Informations du compte</th>
+                                <th class="title"colspan="2">Informations du compte</th>
                             </tr>
                         </thead>
                         <tr>
