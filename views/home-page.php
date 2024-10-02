@@ -41,6 +41,7 @@
                     </div>
                     <div id="user_pp_container">
                         <i class="fa fa-user" aria-hidden="true"></i>
+
                     </div>
                     
                 </div>

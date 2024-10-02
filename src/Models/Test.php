@@ -16,35 +16,30 @@ class Test
 {
     /**
      * Identifiant unique du test.
-     * 
      * @var int
      */
     public $testID;
 
     /**
      * Langue utilisée pour le test.
-     * 
      * @var string
      */
     public $language;
 
     /**
      * Durée du test en secondes.
-     * 
      * @var int
      */
     public $duration;
 
     /**
      * Words Per Minute (WPM) atteint lors du test.
-     * 
      * @var int
      */
     public $wpm;
 
     /**
      * Identifiant de l'utilisateur lié à ce test.
-     * 
      * @var int
      */
     public $statID;

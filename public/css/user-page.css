@@ -8,10 +8,14 @@
     flex-direction: row;
     height: 80vh;
     width: 80vw;
-    min-width: 950px;
-    max-width: 1000px;
+    min-width: 850px;
+    max-width: 850px;
     border-radius: 20px;
     overflow: hidden;
+}
+
+.red{
+    color: #ff4545;
 }
 
 #navbarSpace{
@@ -74,15 +78,36 @@
     border: none;
     background-color: rgb(56, 56, 56);
     padding: 10px;
+    padding-right: 30px;
     color: white;
     height: 40px;
     outline: none;
     font-family: 'Roboto Mono';
-    font-size: 17px;
+    font-size: 15px;
     border: 1px solid grey;
-    letter-spacing: 0.3px;
+    /* letter-spacing: 0.3px; */
+    /* margin-left: 15px; */
+    /* text-align: right; */
+
 }
 
+#inputMail{
+    font-size: 14px;
+
+}
+
+
+input[type=file]::file-selector-button {
+    margin-right: 8px;
+    font-size: 14px;
+    border: none;
+    background-color: rgb(56, 56, 56);
+    font-family: 'Roboto Mono';
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
 
 .UserOptionSpaces{
     height: 100%;
@@ -123,29 +148,60 @@ table{
     width: 100%;
 }
 table .col-right{
-    text-align: left;
-    padding-right: 50px;
-    font-size: 23px;
+    /* padding-right: 50px; */
+    font-size: 37px;
+    font-weight: 500;
+    /* padding-bottom: 10px; */
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+/* .col-right a i{
+    color: white;
+    font-size: 15px;
+    margin-left: 5px;
+    margin-bottom: 25px;
+
+} */
+
+.edit-name-icon{
+    color: white;
+    font-size: 15px;
+    position: relative;
+    left: -23px;
+}
+
+.edit-mail-icon{
+    color: white;
+    font-size: 15px;
+    position: relative;
+    left: -23px;
 }
 table .col-left{
-    padding-right: 50px;
-    font-size: 27px;
+    font-size: 19px;
+    text-align: left;
+    
+}
+td {
+    height: 140px;
+   
 }
 
 table thead tr th{
     text-align: center;
     border-bottom: 2px solid #ff4545;
     font-size: 1.6rem;
-    height: 150px;
+    height: 130px;
 }
 .btnSubmit{
-    width: 150px;
-    height: 50px;
-    border-radius: 30px;
-    border: 2px solid #ff4545;
-    background-color: black;
-    color: white;
-    font-size: 15px;
+    width: 140px;
+    height: 45px;
+    border-radius: 10px;
+    border: 0px;
+    /* border: 2px solid #ff4545; */
+    background-color: #ff4545;
+    color: black;
+    font-size: 1.1rem;
     font-family: 'Roboto Mono';
 
 
@@ -160,7 +216,7 @@ a{
 }
 
 
-#temps{
+#temps, #language{
     width: 200px;
     border: none;
     background-color: rgb(56, 56, 56);
@@ -169,7 +225,9 @@ a{
     outline: none;
     font-family: 'Roboto Mono';
     font-size: 15px;
+    padding: 5px;
 }
+
 
 
 /* select>option{

@@ -79,31 +79,40 @@
                         <thead>
                             <tr>
                                 <th class="title"colspan="2">Informations du compte</th>
+                                
+
                             </tr>
                         </thead>
-                        <tr>
-                            <td class="col-left">Pseudo : </td>
-                            <td class="col-right">
-                                <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->pseudo; ?>">
-                                <i class="pen-to-square"></i>
-                           
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-left">Email : </td>
-                            <td class="col-right">
-                            <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
-                                <i class="pen-to-square"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-left">Date d'inscripion :</td>
-                            <td class="col-right">
-                                <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
-                                <i class="pen-to-square"></i>
-                            </td>
-                            </td>
-                        </tr>
+                        <form id="carForm" action="/">
+                            <tr>
+                                <td class="col-left">Nom d'utilisateur : </td>
+                                <td class="col-right">
+                                    <input type="text" id="inputPseudo" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->pseudo; ?>">
+                                    <i class="fa fa-pen edit-name-icon" onclick="enableNameInput()"></i>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td class="col-left">Adresse e-mail : </td>
+                                <td class="col-right">
+                                    <input type="text" id="inputMail" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
+                                    <i class="fa fa-pen edit-mail-icon" onclick="enableEmailInput()"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-left">Date d'inscripion :</td>
+                                <td class="col-right">
+                                    <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
+                                    <i class="pen-to-square"></i>
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="submit" class="btnSubmit">Sauvegarder</button>
+                                </td>
+                            </tr>
+                        </form>
 
                     </table>
                 </div>
@@ -115,7 +124,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Stats du compte</th>
+                                <th class="title" colspan="2">Statistiques du compte</th>
                             </tr>
                         </thead>
                         <tr>
@@ -125,7 +134,7 @@
                                     // use Matteomcr\TyperProject\Models\Utilisateur;
 
                                     if(Utilisateur::current())
-                                        echo Utilisateur::current()->getHighestScore() . " WPM"; 
+                                        echo Utilisateur::current()->getHighestScore() . ' <span class="red">WPM</span>'; 
                                     else
                                         echo "non connecté";
                                 
@@ -139,7 +148,7 @@
                                     // use Matteomcr\TyperProject\Models\Utilisateur;
 
                                     if(Utilisateur::current())
-                                        echo Utilisateur::current()->getLastScore() . " WPM"; 
+                                        echo Utilisateur::current()->getLastScore() . ' <span class="red">WPM</span>'; 
                                     else
                                         echo "non connecté";
                                 
@@ -147,7 +156,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="col-left">Partie joué :</td>
+                            <td class="col-left">Total de test :</td>
                             <td class="col-right">
                                 <?php
                                     // use Matteomcr\TyperProject\Models\Utilisateur;
@@ -170,7 +179,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Sécurité du compte</th>
+                                <th class="title" colspan="2">Sécurité du compte</th>
                             </tr>
                         </thead>
                         <tr>
@@ -195,7 +204,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Paramètre du typer</th>
+                                <th class="title" colspan="2">Paramètres du typer</th>
                             </tr>
                         </thead>
                         <form id="carForm" action="/">
@@ -211,18 +220,30 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col-left">Personnalise text :</td>
-                                <td class="col-right"> <input type="file" name="file"> </td>
+                                <td class="col-left">Votre texte :</td>
+                                <td class="col-right"> <input class="inputFile" type="file" name="file"> </td>
                             </tr>
                             <tr>
-                                <td class="col-left">Partie joué :</td>
-                                <td class="col-right">12</td>
+                                <td class="col-left">Langue du test:</td>
+                                <td class="col-right">
+                                    <select id="language" name="language">
+                                        <option value="Français">Français</option>
+                                        <option value="English">English</option>
+                                        <option value="Espagnol">Espagnol</option>
+                                        <option value="Italien">Italien</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
-                                <th colspan="2">
+                                <td colspan="2">
                                     <button type="submit" class="btnSubmit">Sauvegarder</button>
-                                </th>
+                                </td>
                             </tr>
+                            <!-- <tr>
+                                <td class="col-left">
+                                    <button type="submit" class="btnSubmit">Sauvegarder</button>
+                                </td>
+                            </tr> -->
                         </form>
                     </table>
                 </div>
@@ -231,7 +252,7 @@
         </div>
     </div>
 </body>
-<script src="js/script-home.js"></script>
+<!-- <script src="js/script-home.js"></script> -->
 <script src="js/user-page.js"></script>
 
 </html>

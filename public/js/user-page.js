@@ -3,8 +3,32 @@ let btnStatsCompte = document.querySelector("#btnStatsCompte");
 let btnSecuriteCompte = document.querySelector("#btnSecuriteCompte");
 let btnParametreTyper = document.querySelector("#btnParamsTyper");
 
+let btnEditName = document.querySelector(".edit-name-icon");
+let btnEditEmail = document.querySelector(".edit-mail-icon");
 
+function enableNameInput() {
+    const input = document.getElementById('inputPseudo');
+    input.disabled = !input.disabled; 
+    input.placeholder = input.value;
+    input.value = "";
+    input.focus(); 
+}
 
+function enableEmailInput() {
+    const input = document.getElementById('inputMail');
+     // Donner le focus à l'input après activation
+    if(input.disabled){
+        input.disabled = !input.disabled; 
+        input.focus();
+        input.placeholder = input.value;
+        input.value = "";
+    }
+    else{
+        input.disabled = !input.disabled; 
+
+    }
+    
+  }
 
 
 btnInfoCompte.addEventListener("click",function(){
@@ -40,10 +64,11 @@ btnParametreTyper.addEventListener("click", function(){
     
 });
 
+// Stocké la valeur du temps dans le local storage
 
+let storedDuration = localStorage.getItem('gameTime');
 document.getElementById('temps').value = storedDuration || '15';
 const carSelect = document.getElementById('temps');
-console.log(carSelect);
 
 carSelect.addEventListener('change', function() {
     let selectedDuration = this.value;
