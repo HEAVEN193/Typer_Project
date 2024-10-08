@@ -14,6 +14,11 @@ let btnReplay = document.querySelector('.btnReplay');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let params_time = Number(urlParams.get('time'));
+window.timer = null;
+window.gameStart = null;
+let currentMode;
+let wordTyped = 0;
+let letterTyped = 0;
 
 // Chercher dans le localSotrage si un temsp existe
 let storedDuration = localStorage.getItem('gameTime');
@@ -24,13 +29,7 @@ let gameTime = storedDuration ? parseInt(storedDuration) * 1000 : 15000;
 // Initialise le select sur le temps du localstorage ou 15 par défaut
 document.getElementById('time').value = storedDuration || '15';
 const timeSelect = document.getElementById('time');
-
-
-window.timer = null;
-window.gameStart = null;
-let currentMode;
-let wordTyped = 0;
-let letterTyped = 0;
+const scaleSelect = document.getElementById('scale');
 
 
 timeSelect.addEventListener('change', function() {
@@ -38,6 +37,15 @@ timeSelect.addEventListener('change', function() {
     gameTime = parseInt(selectedDuration) * 1000;
     localStorage.setItem('gameTime', selectedDuration);
     location.reload();
+});
+
+scaleSelect.addEventListener('change', function() {
+    let selectedScale = this.value;
+    document.querySelector('.game').style.zoom = "110%";
+    document.querySelector('.cursor').style.zoom = "110%";
+    moveCursor();
+    // document.querySelector('.game').style.transform = "scale(" + this.value + ")";
+    // document.querySelector('.cursor').style.transform = "scale(" + this.value + ")";
 });
 
 
@@ -289,9 +297,9 @@ function moveCursor(){
     let nextLetter = document.querySelector('.letter.current');
     let nextWord = document.querySelector('.word.current');
     let cursor = document.querySelector('.cursor');
-    cursor.style.animation ="none"; // stop le clignotant du cursor quand l'user commence à taper
-    cursor.style.transition ="0.2s"; 
-    cursor.style.position ="fixed";
+    cursor.style.animation = "none"; // stop le clignotant du cursor quand l'user commence à taper
+    cursor.style.transition = "0.2s"; 
+    cursor.style.position = "fixed";
     cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top +2+"px";
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']+ "px"; // prend la position de la lettre ou du mot suivant et ajoute px (utilisation de condition ternaire pour savoir si l'on doit changer le right ou le left)  
 }

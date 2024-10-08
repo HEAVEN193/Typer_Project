@@ -87,23 +87,29 @@
                             <tr>
                                 <td class="col-left">Nom d'utilisateur : </td>
                                 <td class="col-right">
-                                    <input type="text" id="inputPseudo" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->pseudo; ?>">
-                                    <i class="fa fa-pen edit-name-icon" onclick="enableNameInput()"></i>
+                                    <div class="inputInfo">
+                                        <input type="text" id="inputPseudo" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->pseudo; ?>">
+                                        <i class="fa fa-pen edit-name-icon" onclick="enableNameInput()"></i>
+                                    </div>
                                 </td>
                                 
                             </tr>
                             <tr>
                                 <td class="col-left">Adresse e-mail : </td>
                                 <td class="col-right">
-                                    <input type="text" id="inputMail" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
-                                    <i class="fa fa-pen edit-mail-icon" onclick="enableEmailInput()"></i>
+                                    <div class="inputInfo">
+                                        <input type="text" id="inputMail" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
+                                        <i class="fa fa-pen edit-mail-icon" onclick="enableEmailInput()"></i>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-left">Date d'inscripion :</td>
                                 <td class="col-right">
-                                    <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
-                                    <i class="pen-to-square"></i>
+                                    <div class="inputInfo">
+                                        <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
+                                        <i class="pen-to-square"></i>
+                                    </div>
                                 </td>
                                 </td>
                             </tr>
@@ -169,6 +175,9 @@
                                 ?>
                             </td>
                         </tr>
+                                
+                                
+                       
                     </table>
                 </div>
             </div>
@@ -185,6 +194,7 @@
                         <tr>
                             <td class="col-left">Record WPM : </td>
                             <td class="col-right">115 WPM</td>
+                            
                         </tr>
                         <tr>
                             <td class="col-left">Dernier score : </td>

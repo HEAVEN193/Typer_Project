@@ -39,10 +39,19 @@
                         
                         ?>
                     </div>
-                    <div id="user_pp_container">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-
-                    </div>
+                    <a href="
+                    <?php
+                    if(Utilisateur::current())
+                        echo "/user"; 
+                    else
+                        echo "/login";
+                    ?>
+                    ">
+                        <div id="user_pp_container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+    
+                        </div>
+                    </a>
                     
                 </div>
             </div>
@@ -56,8 +65,8 @@
                     <i class="fa fa-refresh" aria-hidden="true"></i>
                 </button>
             </div>
-
         </div>
+
         <div class="game">
             <div class="words" tabindex="1"></div>        
             <div class="cursor"></div>
@@ -67,7 +76,7 @@
     <footer>
         <div class="timer-choice-container">
                 
-            </label for="time">Temps du test :  </label>
+            <!-- </label for="time">Temps du test :  </label> -->
                 <select id="time" name="time">
                     <option value="15">15 secondes</option>
                     <option value="30">30 secondes</option>
@@ -75,6 +84,19 @@
                     <option value="60">60 secondes</option>
                 </select>
         </div>
+
+                
+            <!-- </label for="time">Temps du test :  </label> -->
+        <div class="scale-choice-container">
+            
+            <!-- </label for="time">Temps du test :  </label> -->
+                <select id="scale" name="scale">
+                    <option value="1.0">100%</option>
+                    <option value="1.1">110%</option>
+                    <option value="1.2">120%</option>
+                    <option value="1.3">130%</option>
+                </select>
+        </div>  
     </footer>
     <!-- <form id="carForm" method="POST">
     <label for="car-select">durée de test :</label>
