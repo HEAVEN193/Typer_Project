@@ -4,62 +4,83 @@ const Mode = {
     Resultat: 'Resultat'
 };
 
-let words = 'le main ils penser aider grand pourquoi penser aucun air tout bas donner déménagement ce temps lieu maison image plus bas vieux son moi cause faire ensemble lieu tout de trop petit personnes je temps nous changement côté est allé encore dire genre manière garçon avant ils aucun dire essayer ajouter dehors année vivre utiliser ne là vers aucun fin jouer là ainsi mer moment prendre ciel pays pas voir rendre heure le maison attendre toujours si bon ami chose tant jusque soir homme te donc sur chambre coup rendre mot tête air arriver regard toujours puis faire demander sortir enfant rester voir premier peu en au amour ville genre votre moi âme autre même oui chercher comprendre forme comme bon encore travail'.split(' ');
-let wordsCount = words.length;
-var capsLockDOM = document.getElementById("CapsLock");
+let words = "";
+let wordsCount;
+let capsLockDOM = document.getElementById("CapsLock");
 let OptionPopUp = document.querySelector("#OptionsPopUp");
 let btnOptions = document.querySelector("#btnOptions");
 let btnReplay = document.querySelector('.btnReplay');
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-let params_time = Number(urlParams.get('time'));
-window.timer = null;
-window.gameStart = null;
+let gameTime;
+let gameLanguage;
+
+const timeSelect = document.getElementById('time');
+const languageSelect = document.getElementById('language');
+
 let currentMode;
 let wordTyped = 0;
 let letterTyped = 0;
+let timer = null;
+let gameStart = null;
 
-// Chercher dans le localSotrage si un temsp existe
-let storedDuration = localStorage.getItem('gameTime');
-
-// prend le temps sur localStorage sinon prend 15 sec par défaut
-let gameTime = storedDuration ? parseInt(storedDuration) * 1000 : 15000;
-
-// Initialise le select sur le temps du localstorage ou 15 par défaut
-document.getElementById('time').value = storedDuration || '15';
-const timeSelect = document.getElementById('time');
-const scaleSelect = document.getElementById('scale');
-
-
-timeSelect.addEventListener('change', function() {
-    let selectedDuration = this.value;
-    gameTime = parseInt(selectedDuration) * 1000;
-    localStorage.setItem('gameTime', selectedDuration);
-    location.reload();
-});
-
-scaleSelect.addEventListener('change', function() {
-    let selectedScale = this.value;
-    document.querySelector('.game').style.zoom = "110%";
-    document.querySelector('.cursor').style.zoom = "110%";
-    moveCursor();
-    // document.querySelector('.game').style.transform = "scale(" + this.value + ")";
-    // document.querySelector('.cursor').style.transform = "scale(" + this.value + ")";
-});
-
-
-SetCurrentMode();
+init();
 
 
 
+/*------------------ UTILS FUNCTIONS -------------------*/
 
-function addClass(el,name){
-    el.className += ' ' + name;
+/**
+ * Initialise les valeurs du paramètre du jeu sauvé ou par défaut
+ */
+function init(){
+    // Chercher dans le localSotrage si un temps ou une langue existe
+    let storedDuration = localStorage.getItem('gameTime');
+    let storedLanguage = localStorage.getItem('gameLanguage');
+
+    // Prend les valeur sur localStorage sinon les initialise avec une valeur par défaut
+    gameTime = storedDuration ? parseInt(storedDuration) * 1000 : 15000;
+    gameLanguage = storedLanguage ? storedLanguage : "Français";
+
+    // Initialise les select sur les valeurs du localStorage sinon 
+    document.getElementById('time').value = gameTime / 1000;
+    document.getElementById('language').value = gameLanguage;
+
+    loadWords(gameLanguage);
+    SetCurrentMode();
 }
 
-function removeClass(el,name){
-    el.className = el.className.replace(name, '');
+/**
+ * Charge les mots depuis le fichier JSON
+ * @param {string} language 
+ */ 
+function loadWords(language) {
+    fetch('/js/words.json') 
+        .then(response => response.json())
+        .then(data => {
+            words = data[language];
+            wordsCount = words.length;
+            newGame();  // Lancer une nouvelle partie avec les nouveaux mots
+        })
+        .catch(error => console.error('Erreur lors du chargement du fichier JSON:', error));
+}
+
+
+/**
+ * Ajoute une classe à un élément
+ * @param {HTMLElement} el - L'élément auquel ajouter la classe
+ * @param {string} name - Nom de la classe
+ */
+function addClass(el, name) {
+    el.classList.add(name);
+}
+
+/**
+ * Retire une classe d'un élément
+ * @param {HTMLElement} el - L'élément dont retirer la classe
+ * @param {string} name - Nom de la classe
+ */
+function removeClass(el, name) {
+    el.classList.remove(name);
 }
 
 /**
@@ -71,12 +92,19 @@ function randomWord(){
     return words[randomIndex - 1];
 }
 
-
-function formatWord(word){
+/**
+ * Formate un mot pour l'affichage
+ * @param {string} word - Le mot à formater
+ * @returns {string} - Le mot formaté en HTML
+ */
+function formatWord(word) {
     return `<div class="word"><span class="letter">${word.split('').join('</span><span class="letter">')}</span></div>`;
-    
 }
 
+
+/**
+ * Démarre une nouvelle partie en générant 100 mots à taper
+ */
 function newGame(){
     document.querySelector('.cursor').style.animation = "blink 1s infinite";
     document.querySelector('.words').innerHTML='';
@@ -88,21 +116,27 @@ function newGame(){
     document.querySelector('.info').innerHTML = gameTime / 1000;
 }
 
-function getWpm(){
+/**
+ * Calcule les mots par minute (WPM) basés sur les lettres correctes
+ * @returns {number} - Le score en WPM
+ */
+function getWpm() {
     let lettersCorrect = document.querySelectorAll('.letter.correct').length;
-    let result = Math.round((lettersCorrect / 5) * (60000 / gameTime)); 
-    return result;
+    return Math.round((lettersCorrect / 5) * (60000 / gameTime));
 }
 
+/**
+ * Termine la partie et enregistre le score
+ */
 function gameOver(){
-    clearInterval(window.timer);
+    clearInterval(timer);
     addClass(document.querySelector('.game'), 'over');
     document.querySelector('.info').innerHTML = `WPM : ${getWpm()}`;
 
     const data = {
-        language: "Francais",  // Date actuelle au format AAAA-MM-JJ
-        duration: gameTime / 1000,  // Remplacer par un mot de passe réel ou généré
-        wpm: getWpm() , // ID de l'utilisateur connecté (à modifier dynamiquement selon ta logique)
+        language: "Francais", 
+        duration: gameTime / 1000,  
+        wpm: getWpm() ,
         statID: 2
     };
 
@@ -114,19 +148,8 @@ function gameOver(){
         },
         body: JSON.stringify(data)  // Convertir les données en JSON
     })
-    .then(response => response.json())  // Utilise .text() pour voir la réponse brute
+    .then(response => response.json())  
     .then(data => {
-        // console.log('Réponse brute du serveur:', data);
-        // try {
-        //     const data = JSON.parse(data);  
-        //     if (data.message) {
-        //         console.log('Données insérées avec succès:', data.message);
-        //     } else if (data.error) {
-        //         console.error('Erreur lors de l\'insertion des données:', data.error);
-        //     }
-        // } catch (error) {
-        //     console.error('Erreur lors du parsing JSON:', error);
-        // }
         if (data.message) {
             console.log('Données insérées avec succès:', data.message);
         } else if (data.error) {
@@ -136,34 +159,44 @@ function gameOver(){
     .catch((error) => {
         console.error('Erreur lors de l\'envoi des données:', error);
     });
-
 }
 
+/**
+ * Déplace le curseur sur la lettre ou le mot actuel
+ */
+function moveCursor(){
+    let nextLetter = document.querySelector('.letter.current');
+    let nextWord = document.querySelector('.word.current');
+    let cursor = document.querySelector('.cursor');
+    cursor.style.animation = "none"; // stop le clignotant du cursor quand l'user commence à taper
+    cursor.style.transition = "0.2s"; 
+    cursor.style.position = "fixed";
+    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top +2+"px";
+    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']+ "px"; // prend la position de la lettre ou du mot suivant et ajoute px (utilisation de condition ternaire pour savoir si l'on doit changer le right ou le left)  
+}
+
+/*-----------------------------------------------------------*/
+/*------------------- ECOUTEURS D'ÉVÉNEMENTS ----------------*/
+/*-----------------------------------------------------------*/
 
 
-btnReplay.addEventListener('click', ()=>{
-    // gameOver();
-    // newGame();
+timeSelect.addEventListener('change', function () {
+    let selectedDuration = this.value;
+    gameTime = parseInt(selectedDuration) * 1000;
+    localStorage.setItem('gameTime', selectedDuration);
     location.reload();
-    // newGame();
-    // removeClass(document.querySelector('.game'), 'over');
-    // removeClass(document.querySelector('.game'), 'over');
-    // document.querySelector('.info').innerHTML = gameTime / 1000;
-    // document.querySelector('.info').style.border="none";
-    // gameTime = 10 * 1000;
-    // window.timer = null;
-    // window.gameStart = null;
-    // document.querySelector('.words').focus();
-    // console.log(document.activeElement);
-    // document.querySelector('.cursor').style.top=6+"px";
-    // document.querySelector('.cursor').style.left=4+"px";
-
-
 });
 
-window.addEventListener('resize', ()=>{
-    moveCursor();
-})
+languageSelect.addEventListener('change', function () {
+    let selectedLanguage = this.value;
+    gameLanguage = selectedLanguage;
+    localStorage.setItem('gameLanguage', selectedLanguage);
+    loadWords(selectedLanguage);  // Charger les mots de la langue sélectionnée
+});
+
+btnReplay.addEventListener('click', () => location.reload());
+
+window.addEventListener('resize', () => moveCursor());
 
 window.addEventListener('keydown', (e) => {
     
@@ -290,19 +323,9 @@ window.addEventListener('keydown', (e) => {
     moveCursor(); // prend la position de la lettre ou du mot suivant et ajoute px (utilisation de condition ternaire pour savoir si l'on doit changer le right ou le left)  
 });
    
-newGame();
 
 
-function moveCursor(){
-    let nextLetter = document.querySelector('.letter.current');
-    let nextWord = document.querySelector('.word.current');
-    let cursor = document.querySelector('.cursor');
-    cursor.style.animation = "none"; // stop le clignotant du cursor quand l'user commence à taper
-    cursor.style.transition = "0.2s"; 
-    cursor.style.position = "fixed";
-    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top +2+"px";
-    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']+ "px"; // prend la position de la lettre ou du mot suivant et ajoute px (utilisation de condition ternaire pour savoir si l'on doit changer le right ou le left)  
-}
+
 
 function OnKeyPressed(e)
 {

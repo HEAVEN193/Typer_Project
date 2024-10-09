@@ -87,15 +87,13 @@
 
                 
             <!-- </label for="time">Temps du test :  </label> -->
-        <div class="scale-choice-container">
+        <div class="language-choice-container">
             
             <!-- </label for="time">Temps du test :  </label> -->
-                <select id="scale" name="scale">
-                    <option value="1.0">100%</option>
-                    <option value="1.1">110%</option>
-                    <option value="1.2">120%</option>
-                    <option value="1.3">130%</option>
-                </select>
+            <select id="language">
+                <option value="Français">Français</option>
+                <option value="Anglais">Anglais</option>
+            </select>
         </div>  
     </footer>
     <!-- <form id="carForm" method="POST">

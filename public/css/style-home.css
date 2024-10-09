@@ -303,8 +303,8 @@ main{
 }
 
 .cursor {
-    width: 2px;
-    height: 1.6rem;
+    width: 2.2px;
+    height: 1.7rem;
     background-color: var(--secondary_color);
     position: absolute;
     top: 6px;
