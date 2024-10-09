@@ -12,7 +12,7 @@ body{
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;   
     display: flex;
     flex-direction: row;
-    height: 900px;
+    height: 800px;
     width: 80vw;
     min-width: 850px;
     max-width: 850px;
@@ -64,8 +64,11 @@ body{
     background-color: #ff4545;
     transition: 0.1s;
     border-radius: 20px;
+}
 
-
+.btnUserPageCurrent{
+    background-color: #ff4545;
+    border-radius: 20px;
 }
 
 .btnUserPage>span>i{

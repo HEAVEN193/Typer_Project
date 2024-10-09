@@ -236,17 +236,16 @@
                             <tr>
                                 <td class="col-left">Langue du test:</td>
                                 <td class="col-right">
-                                    <select id="language" name="language">
+                                    <select id="languageSelect" name="language">
                                         <option value="Français">Français</option>
-                                        <option value="English">English</option>
-                                        <option value="Espagnol">Espagnol</option>
-                                        <option value="Italien">Italien</option>
+                                        <option value="Anglais">English</option>
+                                        <option value="Espagnol">Español</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <button type="submit" class="btnSubmit">Sauvegarder</button>
+                                    <button type="submit" class="btnSubmit" id="btnSaveParameters">Sauvegarder</button>
                                 </td>
                             </tr>
                             <!-- <tr>

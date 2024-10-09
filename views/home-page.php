@@ -92,7 +92,8 @@
             <!-- </label for="time">Temps du test :  </label> -->
             <select id="language">
                 <option value="Français">Français</option>
-                <option value="Anglais">Anglais</option>
+                <option value="Anglais">English</option>
+                <option value="Espagnol">Español</option>
             </select>
         </div>  
     </footer>
