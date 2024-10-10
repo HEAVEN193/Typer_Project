@@ -355,8 +355,6 @@ window.addEventListener("keyup", function(event) {
   } else {
     capsLockDOM.style.color = "green"
     logoCadena.classList = "fa fa-lock-open"
-    // capsLockDOM.style.display = "none";
-
   }
 });
 
