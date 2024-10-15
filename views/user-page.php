@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/user-page.css">
-    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="/css/user-page.css">
+    <link rel="stylesheet" href="/css/style-home.css">
     <script src="https://kit.fontawesome.com/7c6bb8aaf1.js" crossorigin="anonymous"></script>
     <title>User Page</title>
 </head>
@@ -15,7 +15,7 @@
     <header>
         <div>
             <div id="divLogo">
-                <a href="/"><img id="logo" src="resources/icon/icon_typerPP.png"></img></a>
+                <a href="/"><img id="logo" src="/resources/icon/icon_typerPP.png"></img></a>
 
                 <h1>TYPER++</h1>
             </div>
@@ -35,7 +35,6 @@
                                 echo Utilisateur::current()->pseudo; 
                             else
                                 echo "LOGIN";
-                            
                             ?>
                         </div>
                     <div id="user_pp_container">
@@ -83,7 +82,7 @@
 
                             </tr>
                         </thead>
-                        <form id="carForm" action="/">
+                        <form id="carForm" action="/update/user" method="POST">
                             <tr>
                                 <td class="col-left">Nom d'utilisateur : </td>
                                 <td class="col-right">
@@ -98,7 +97,7 @@
                                 <td class="col-left">Adresse e-mail : </td>
                                 <td class="col-right">
                                     <div class="inputInfo">
-                                        <input type="text" id="inputMail" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
+                                        <input type="text" id="inputMail" name="email" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->addressMail; ?>">
                                         <i class="fa fa-pen edit-mail-icon" onclick="enableEmailInput()"></i>
                                     </div>
                                 </td>
@@ -107,7 +106,7 @@
                                 <td class="col-left">Date d'inscripion :</td>
                                 <td class="col-right">
                                     <div class="inputInfo">
-                                        <input type="text" name="pseudo" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
+                                        <input type="text" name="date" class="inputInfoCompte" disabled value="<?php echo Utilisateur::current()->getStatistique()->registrationDate; ?>">
                                         <i class="pen-to-square"></i>
                                     </div>
                                 </td>
@@ -262,7 +261,7 @@
     </div>
 </body>
 <!-- <script src="js/script-home.js"></script> -->
-<script src="js/user-page.js"></script>
+<script src="/js/user-page.js"></script>
 
 </html>
 

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style-home.css">
-    <link rel="icon" href="resources/icon/icon_typerPP_TEXT.png" type="image/gif">
+    <link rel="stylesheet" href="/css/style-home.css">
+    <link rel="icon" href="/resources/icon/icon_typerPP_TEXT.png" type="image/gif">
     <title>Projet Typer | home</title>
     <script src="https://kit.fontawesome.com/7c6bb8aaf1.js" crossorigin="anonymous"></script>
 </head>
@@ -13,7 +13,7 @@
     <header id="PageHeader">
         <div>
             <div id="divLogo">
-                <a href="/"><img id="logo" src="resources/icon/icon_typerPP.png"></img></a>
+                <a href="/"><img id="logo" src="/resources/icon/icon_typerPP.png"></img></a>
                 <h1>TYPER<span class="red">++</span></h1>
             </div>
         </div>
@@ -36,7 +36,6 @@
                             echo Utilisateur::current()->pseudo; 
                         else
                             echo "LOGIN";
-                        
                         ?>
                     </div>
                     <a href="
@@ -128,5 +127,5 @@
         </div>
     </div>
 </body>
-<script src="js/script-home.js"></script>
+<script src="/js/script-home.js"></script>
 </html>

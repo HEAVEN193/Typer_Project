@@ -6,6 +6,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Matteomcr\TyperProject\Models\Database;
 use Matteomcr\TyperProject\Models\Statistique;
+use Exception;
+use PDO;
 
 /**
  * Classe représentant un utilisateur de l'application.
@@ -77,10 +79,20 @@ class Utilisateur
 
             if ($email != null) {
                 $current = $email ? static::fetchByEmail($email) : new static;
+                
             }
         }
 
         return $current;
+    }
+
+    public static function refreshCurrent(): void
+    {
+        $email = $_SESSION['user'] ?? null;
+
+        if ($email != null) {
+            static::$current = static::fetchByEmail($email);
+        }
     }
 
     /**
@@ -168,7 +180,7 @@ class Utilisateur
 
             return $pdo->lastInsertId();
         } catch (\Exception $e) {
-            throw new \Exception("Email vide !");
+            throw new \Exception("Une erreur est survenue lors de la création du compte : ");
         }
     }
 
@@ -195,13 +207,32 @@ class Utilisateur
             if (password_verify($password, $user['motDePasse'])) {
                 return $user;
             } else {
-                throw new \Exception("Mot de passe incorrect !");
+                throw new \Exception("Email ou mot de passe incorrect !");
             }
         } else {
             // Email n'existe pas
-            throw new \Exception("Email inexistant !");
+            throw new \Exception("Email ou mot de passe incorrect !");
         }
     }
+
+
+    public function updateUserPseudo($newPseudo){
+        $pdo = Database::connection();
+        $sql = "UPDATE Utilisateurs SET pseudo = ? WHERE utilisateurID = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$newPseudo, $this->utilisateurID]);
+    }
+
+    public function updateUserEmail(string $newEmail): void
+    {
+        $pdo = Database::connection();
+        $sql = "UPDATE Utilisateurs SET addressMail = ? WHERE utilisateurID = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$newEmail, $this->utilisateurID]);
+        $_SESSION['user'] = $newEmail;
+
+    }
+  
 
 
 
