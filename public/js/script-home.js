@@ -353,7 +353,7 @@ window.addEventListener("keyup", function(event) {
     capsLockDOM.style.color= "#ff4545";
     logoCadena.classList = "fa fa-lock"
   } else {
-    capsLockDOM.style.color = "green"
+    capsLockDOM.style.color = "white"
     logoCadena.classList = "fa fa-lock-open"
   }
 });

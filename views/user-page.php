@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/user-page.css">
     <link rel="stylesheet" href="/css/style-home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+
     <script src="https://kit.fontawesome.com/7c6bb8aaf1.js" crossorigin="anonymous"></script>
     <title>User Page</title>
 </head>
@@ -113,13 +115,25 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="2" class="col-button">
                                     <button type="submit" class="btnSubmit">Sauvegarder</button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td colspan="2" class="col-error">
+                                    <?php
+                                    if(isset($_SESSION['error'])){
+                                        echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                                        unset($_SESSION['error']); 
+                                    } 
+                                    ?>
+                                </td>
+                            </tr>
                         </form>
+                        
 
                     </table>
+                   
                 </div>
             </div>
 
@@ -174,6 +188,10 @@
                                 ?>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2" class="col-invisible">
+                            </td>
+                        </tr>
                                 
                                 
                        
@@ -191,17 +209,21 @@
                             </tr>
                         </thead>
                         <tr>
-                            <td class="col-left">Record WPM : </td>
-                            <td class="col-right">115 WPM</td>
+                            <td class="col-left">A faire : </td>
+                            <td class="col-right">To do</td>
                             
                         </tr>
                         <tr>
-                            <td class="col-left">Dernier score : </td>
-                            <td class="col-right">98 WPM</td>
+                            <td class="col-left">A faire : </td>
+                            <td class="col-right">To do</td>
                         </tr>
                         <tr>
-                            <td class="col-left">Partie joué :</td>
-                            <td class="col-right">12</td>
+                            <td class="col-left">A faire :</td>
+                            <td class="col-right">To do</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="col-invisible">
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -245,6 +267,16 @@
                             <tr>
                                 <td colspan="2">
                                     <button type="submit" class="btnSubmit" id="btnSaveParameters">Sauvegarder</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="col-error">
+                                    <?php
+                                    if(isset($_SESSION['error'])){
+                                        echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                                        unset($_SESSION['error']); 
+                                    } 
+                                    ?>
                                 </td>
                             </tr>
                             <!-- <tr>
