@@ -14,7 +14,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 $app->get('/', [HomeController::class, 'showHomePage']);
 $app->get('/register', [HomeController::class, 'showRegisterPage']);
 $app->get('/login', [HomeController::class, 'showLoginPage']);
-$app->get('/user', [HomeController::class, 'showUserPage']);
+$app->get('/', [HomeController::class, 'showUserPage']);
+
 $app->post('/update/user', [UtilisateurController::class, 'updateUser']);
 
 
